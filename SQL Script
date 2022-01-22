@@ -1,0 +1,19 @@
+use AdventureWorks2019
+go
+
+--Crea dispositivo de almacenamiento
+EXEC sp_addumpdevice 'disk', 'AdventureWorksBackUpDevice',   
+'D:\DESTINATION\MSSQL2019\BACKUP';  
+GO
+
+--Ver los dispositivos de backup del servidor
+SELECT      *
+FROM        sys.backup_devices
+GO
+
+
+--Crear el primer backup
+BACKUP DATABASE AdventureWorks2019   
+ TO AdventureWorksBackUpDevice  
+   WITH FORMAT, INIT, NAME = N'Hotel Full Backup' ;  
+GO  
